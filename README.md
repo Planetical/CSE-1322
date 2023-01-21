@@ -1,2 +1,6 @@
 # CSE-1322
-for my CSE 1322 class + lab
+
+this is for cs
+i am now learning so much
+and i will save it
+
