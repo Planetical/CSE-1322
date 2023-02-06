@@ -3,7 +3,8 @@ public class Driver {
     public static void main(String[] args) {
         boolean quit = false;
         int choice;
-        Checking checking = new Checking();
+        double balance = 0;
+        Checking checking = new Checking(balance);
         Savings savings = new Savings();
         Scanner sc = new Scanner(System.in);
 
@@ -22,22 +23,22 @@ public class Driver {
                 case 1:
                     System.out.println("How much would you like to withdraw from Checking? ");
                     double withdraw = sc.nextDouble();
-                    checking.withdrawal(checking.getBalance(), withdraw);
+                    checking.withdrawal(withdraw);
                     break;
                 case 2:
                     System.out.println("How much would you like to withdraw from Savings? ");
                     withdraw = sc.nextDouble();
-                    savings.withdrawal(savings.getBalance(), withdraw);
+                    savings.withdrawal(withdraw);
                     break;
                 case 3:
                     System.out.println("How much would you like to deposit into Checking?");
                     double deposit = sc.nextDouble();
-                    checking.deposit(checking.getBalance(), deposit);
+                    checking.deposit(deposit);
                     break;
                 case 4:
                     System.out.println("How much would you like to deposit into Savings?");
                     deposit = sc.nextDouble();
-                    savings.deposit(savings.getBalance(), deposit);
+                    savings.deposit(deposit);
                     break;
                 case 5:
                     System.out.println("Your balance for checking " + checking.getaccount_number() + " is " + checking.getBalance());
@@ -46,7 +47,7 @@ public class Driver {
                     System.out.println("Your balance for saving " + savings.getaccount_number() + " is " + savings.getBalance());
                     break;
                 case 7:
-                    savings.setBalance(savings.getBalance());
+                    savings.interest(balance);
                     break;
                 case 8:
                     quit = true;

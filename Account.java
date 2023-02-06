@@ -10,6 +10,8 @@ public class Account {
     }
 
     public Account(double balance) {
+        nextNum++;
+        this.account_number = nextNum;
         this.balance = balance;
     }
 
@@ -25,11 +27,11 @@ public class Account {
        this.balance = balance;
     }
 
-    void withdrawal(double balance, double withdrawal) {
+    void withdrawal(double withdrawal) {
         balance -= withdrawal;
     }
 
-    void deposit(double balance, double deposit) {
+    void deposit(double deposit) {
         balance += deposit;
     }
 }

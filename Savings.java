@@ -1,35 +1,34 @@
 public class Savings extends Account {
+    private int depositCount = 0;
     public Savings() {
         Account savings = new Account();
     }
 
     void interest(double balance){
-        double interest = balance * 0.15F;
-        double newTotal = balance + interest;
-
+        double interest = getBalance() * 0.15F;
         System.out.println("Customer earned " + interest + " in interest");
+        deposit(interest);
     }
 
     @Override
-    void withdrawal(double balance, double withdraw) {
-        balance -= withdraw;
+    void withdrawal(double withdraw) {
+        super.withdrawal(withdraw);
 
-        if(balance < 500) {
+        if(getBalance() < 500) {
             System.out.println("Charging a fee of $10 because you are below $500");
-            balance -= 10;
+            super.withdrawal(10);
         }
     }
 
     @Override
-    void deposit(double balance, double deposit) {
-        int depositCount = 0;
-        balance += deposit;
+    void deposit(double deposit) {
+        super.deposit(deposit);
         depositCount++;
         System.out.println("This is deposit " + depositCount);
 
         if (depositCount >= 6) {
             System.out.println("Charging a fee of $10");
-            balance -= 10;
+            super.withdrawal(10);
         }
     }
 }
