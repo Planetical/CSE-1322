@@ -2,12 +2,13 @@ import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Driver {
-    Scanner sc = new Scanner(System.in);
+    static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
         ArrayList<Lot> lots = new ArrayList<Lot>();
+        mainMenu(lots);
     }
 
-    public Lot getNextLot(ArrayList<Lot> lots) {
+    public static Lot getNextLot(ArrayList<Lot> lots) {
         if (lots.isEmpty()) {
             return new Lot();
         } else {
@@ -17,7 +18,7 @@ public class Driver {
         }
     }
 
-    public void addItem(ArrayList<Lot> lots) {
+    public static void addItem(ArrayList<Lot> lots) {
         System.out.println("Please give a description for the item: ");
         String description = sc.next();
         System.out.println("Please give a starting bid for the item: ");
@@ -28,7 +29,7 @@ public class Driver {
         lots.add(new Lot(description,startingBid,bidIncrement));
     }
 
-    public void bid(Lot lot) {
+    public static void bid(Lot lot) {
         System.out.println("Please give the amount you want to bid. The minimum amount to bet is " + lot.getBidIncrement());
         int bid = sc.nextInt();
         if (lot.nextBid(lot.nextNum,lot.getBidIncrement()) > bid) {
@@ -42,7 +43,7 @@ public class Driver {
         lot.markSold();
     }
 
-    public void mainMenu(ArrayList<Lot> lots){
+    private static void mainMenu(ArrayList<Lot> lots){
         Lot currentLot = null;
         int choice;
         boolean quit = false;
