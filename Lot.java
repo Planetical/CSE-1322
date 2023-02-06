@@ -45,7 +45,7 @@ public class Lot {
         currentBid = bid;
     }
 
-    int nextBid(int currentBid,int bidIncrement) {
+    int nextBid() {
         int nextBid = currentBid + bidIncrement;
         return nextBid;
     }
@@ -55,7 +55,7 @@ public class Lot {
         if (sold == true) {
             return "Lot " + lotNumber + ". " + description + " was sold for $" + currentBid;
         } else {
-            return "Lot " + lotNumber + ". " + description + " current bid $" + currentBid + " minimum bid $" + nextBid(currentBid,bidIncrement);
+            return "Lot " + lotNumber + ". " + description + " current bid $" + currentBid + " minimum bid $" + nextBid();
         }
     }
 

@@ -12,30 +12,31 @@ public class Driver {
         if (lots.isEmpty()) {
             return new Lot();
         } else {
-            Lot remove = lots.remove(0);
+            Lot nextLot = lots.get(0);
             lots.remove(0);
-            return remove;
+            return nextLot;
         }
     }
 
     public static void addItem(ArrayList<Lot> lots) {
-        System.out.println("Please give a description for the item: ");
-        String description = sc.next();
-        System.out.println("Please give a starting bid for the item: ");
+        sc.nextLine();
+        System.out.print("Please give a description for the item: ");
+        String description = sc.nextLine();
+        System.out.print("Please give a starting bid for the item: ");
         int startingBid = sc.nextInt();
-        System.out.println("Please give a bid increment for the item: ");
+        System.out.print("Please give a bid increment for the item: ");
         int bidIncrement = sc.nextInt();
 
         lots.add(new Lot(description,startingBid,bidIncrement));
     }
 
     public static void bid(Lot lot) {
-        System.out.println("Please give the amount you want to bid. The minimum amount to bet is " + lot.getBidIncrement());
+        System.out.println("Please give the amount you want to bid. The minimum amount to bet is " + lot.nextBid());
         int bid = sc.nextInt();
-        if (lot.nextBid(lot.nextNum,lot.getBidIncrement()) > bid) {
-            System.out.println("Bid is not high enough.");
-        } else {
+        if (bid >= lot.nextBid()) {
             lot.setCurrentBid(bid);
+        } else {
+            System.out.println("Bid is not high enough.");
         }
     }
 
@@ -66,9 +67,9 @@ public class Driver {
                     addItem(lots);
                     break;
                 case 2:
-                    if (getNextLot(lots) == null) {
+                    if (lots.size() == 0) {
                         System.out.println("There is nothing to bid on, add an item first");
-                    } else if (getNextLot(lots).getSold() == false) {
+                    } else if (currentLot != null && !currentLot.getSold()) {
                         System.out.println("You must mark the current lot as sold before bringing up the next Lot");
                     } else {
                         currentLot = getNextLot(lots);
