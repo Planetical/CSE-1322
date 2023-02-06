@@ -52,6 +52,6 @@ public class Driver {
                     quit = true;
                     break;
             }
-        }while (quit = false);
+        }while (quit == false);
     }
 }
